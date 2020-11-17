@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1605606418 source:c:\users\franc\desktop\isa\lab_1\confronto\confronto_output\main.c
+	<stdio.h>
+	<stdlib.h>
+
+1605607863 source:c:\users\franc\desktop\isa\lab_1\matlab_model\output_comparison\main.c
+	<stdio.h>
+	<stdlib.h>
+
