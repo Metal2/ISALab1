@@ -1,0 +1,69 @@
+Information: Updating design information... (UID-85)
+Warning: There are infeasible paths detected in your design that were ignored during optimization. Please run 'report_timing -attributes' and/or 'create_qor_snapshot/query_qor_snapshot -infeasible_paths' to identify these paths.  (OPT-1721)
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : unfolding_FIR
+Version: O-2018.06-SP4
+Date   : Sat Nov  7 19:46:54 2020
+****************************************
+
+Operating Conditions: typical   Library: NangateOpenCellLibrary
+Wire Load Model Mode: top
+
+  Startpoint: DIN_0[3] (input port clocked by MY_CLK)
+  Endpoint: reg_pipe_oriz_impl_2_2/tmp_out_reg[6]
+            (rising edge-triggered flip-flop clocked by MY_CLK)
+  Path Group: MY_CLK
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  unfolding_FIR      5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock MY_CLK (rise edge)                                0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                    0.50       0.50 r
+  DIN_0[3] (in)                                           0.00       0.50 r
+  n_0/sample[3] (mpy_N8_10)                               0.00       0.50 r
+  n_0/mult_22/a[3] (mpy_N8_10_DW_mult_tc_1)               0.00       0.50 r
+  n_0/mult_22/U285/ZN (INV_X1)                            0.03       0.53 f
+  n_0/mult_22/U315/ZN (INV_X1)                            0.04       0.57 r
+  n_0/mult_22/U307/Z (XOR2_X1)                            0.08       0.65 r
+  n_0/mult_22/U308/ZN (NAND2_X1)                          0.04       0.69 f
+  n_0/mult_22/U475/ZN (OAI22_X1)                          0.05       0.73 r
+  n_0/mult_22/U455/ZN (INV_X1)                            0.03       0.76 f
+  n_0/mult_22/U115/S (FA_X1)                              0.11       0.87 f
+  n_0/mult_22/U114/S (FA_X1)                              0.14       1.00 r
+  n_0/mult_22/U340/ZN (NOR2_X1)                           0.03       1.04 f
+  n_0/mult_22/U283/ZN (NOR2_X1)                           0.07       1.10 r
+  n_0/mult_22/U436/ZN (NAND2_X1)                          0.03       1.13 f
+  n_0/mult_22/U488/ZN (OAI21_X1)                          0.04       1.18 r
+  n_0/mult_22/U446/ZN (XNOR2_X1)                          0.06       1.24 r
+  n_0/mult_22/product[13] (mpy_N8_10_DW_mult_tc_1)        0.00       1.24 r
+  n_0/mpy_out[6] (mpy_N8_10)                              0.00       1.24 r
+  reg_pipe_oriz_impl_2_2/d_in[6] (reg_N9_8)               0.00       1.24 r
+  reg_pipe_oriz_impl_2_2/U23/ZN (NAND2_X1)                0.03       1.26 f
+  reg_pipe_oriz_impl_2_2/U12/ZN (NAND2_X1)                0.03       1.29 r
+  reg_pipe_oriz_impl_2_2/tmp_out_reg[6]/D (DFFR_X2)       0.01       1.30 r
+  data arrival time                                                  1.30
+
+  clock MY_CLK (rise edge)                                0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  clock uncertainty                                      -0.07      -0.07
+  reg_pipe_oriz_impl_2_2/tmp_out_reg[6]/CK (DFFR_X2)      0.00      -0.07 r
+  library setup time                                     -0.03      -0.10
+  data required time                                                -0.10
+  --------------------------------------------------------------------------
+  data required time                                                -0.10
+  data arrival time                                                 -1.30
+  --------------------------------------------------------------------------
+  slack (VIOLATED)                                                  -1.40
+
+
+1

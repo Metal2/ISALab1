@@ -1,0 +1,36 @@
+# SU MODELSIM
+
+#COMPILE TB FILES AND SYNTH NETLIST
+vcom -93 -work ./work ../tb/clk_gen.vhd
+vcom -93 -work ./work ../tb/data_maker.vhd
+vcom -93 -work ./work ../tb/data_sink.vhd
+vlog -work ./work ../netlist/myfir.v
+vlog -work ./work ../tb/tb_fir.v
+
+#SIMULATE BY LINKING BOTH TECH LIBRARY AND SDF (DELAY FILE)
+vsim -L /software/dk/nangate45/verilog/msim6.2g -sdftyp /tb_fir/UUT=../netlist/myfir.sdf work.tb_fir
+
+#ANNOTATE SWITCHING INFO INSIDE A VCD FILE AND INCLUDE EVERY SIGNAL
+vcd file ../vcd/myfir_syn.vcd
+vcd add /tb_fir/UUT/*
+
+#RUN SIMULATION
+run 3 us
+
+
+
+
+# SU TERMINALE
+#CONVERT VCD FILE TO A SAIF FILE
+vcd2saif -input ../vcd/myfir_syn.vcd -output ../saif/myfir_syn.saif
+
+
+#SU SYNOPSYS
+
+# READ NETLIST AND SAIF FILE
+read_verilog -netlist ../netlist/myfir.v
+read_saif -input ../saif/myfir_syn.saif -instance tb_fir/UUT -unit ns -scale 1
+
+#CREATE A CLOCK SIGNAL AND REPORT POWER
+create_clock -name MY_CLK CLK
+report_power > ./power_report.txt

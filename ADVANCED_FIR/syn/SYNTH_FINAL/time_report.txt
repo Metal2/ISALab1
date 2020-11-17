@@ -1,0 +1,70 @@
+Information: Updating design information... (UID-85)
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : unfolding_FIR
+Version: O-2018.06-SP4
+Date   : Mon Nov  9 10:51:04 2020
+****************************************
+
+Operating Conditions: typical   Library: NangateOpenCellLibrary
+Wire Load Model Mode: top
+
+  Startpoint: DIN_0[3] (input port clocked by MY_CLK)
+  Endpoint: reg_pipe_oriz_impl_2_2/tmp_out_reg[7]
+            (rising edge-triggered flip-flop clocked by MY_CLK)
+  Path Group: MY_CLK
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  unfolding_FIR      5K_hvratio_1_1        NangateOpenCellLibrary
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock MY_CLK (rise edge)                                0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                    0.50       0.50 f
+  DIN_0[3] (in)                                           0.00       0.50 f
+  n_0/sample[3] (mpy_N8_10)                               0.00       0.50 f
+  n_0/mult_22/a[3] (mpy_N8_10_DW_mult_tc_0)               0.00       0.50 f
+  n_0/mult_22/U169/ZN (XNOR2_X1)                          0.17       0.67 r
+  n_0/mult_22/U252/ZN (NAND2_X1)                          0.10       0.77 f
+  n_0/mult_22/U209/ZN (OAI22_X1)                          0.08       0.85 r
+  n_0/mult_22/U35/S (HA_X1)                               0.08       0.94 r
+  n_0/mult_22/U34/S (FA_X1)                               0.12       1.06 f
+  n_0/mult_22/U197/ZN (AOI222_X1)                         0.13       1.18 r
+  n_0/mult_22/U196/ZN (OAI222_X1)                         0.07       1.25 f
+  n_0/mult_22/U9/CO (FA_X1)                               0.10       1.34 f
+  n_0/mult_22/U8/CO (FA_X1)                               0.09       1.44 f
+  n_0/mult_22/U7/CO (FA_X1)                               0.09       1.53 f
+  n_0/mult_22/U6/CO (FA_X1)                               0.09       1.62 f
+  n_0/mult_22/U5/CO (FA_X1)                               0.09       1.71 f
+  n_0/mult_22/U4/CO (FA_X1)                               0.09       1.80 f
+  n_0/mult_22/U3/CO (FA_X1)                               0.09       1.89 f
+  n_0/mult_22/U2/S (FA_X1)                                0.13       2.02 r
+  n_0/mult_22/product[14] (mpy_N8_10_DW_mult_tc_0)        0.00       2.02 r
+  n_0/mpy_out[7] (mpy_N8_10)                              0.00       2.02 r
+  reg_pipe_oriz_impl_2_2/d_in[7] (reg_N9_8)               0.00       2.02 r
+  reg_pipe_oriz_impl_2_2/U9/ZN (NAND2_X1)                 0.03       2.05 f
+  reg_pipe_oriz_impl_2_2/U8/ZN (OAI21_X1)                 0.03       2.08 r
+  reg_pipe_oriz_impl_2_2/tmp_out_reg[7]/D (DFFR_X1)       0.01       2.09 r
+  data arrival time                                                  2.09
+
+  clock MY_CLK (rise edge)                                7.32       7.32
+  clock network delay (ideal)                             0.00       7.32
+  clock uncertainty                                      -0.07       7.25
+  reg_pipe_oriz_impl_2_2/tmp_out_reg[7]/CK (DFFR_X1)      0.00       7.25 r
+  library setup time                                     -0.04       7.21
+  data required time                                                 7.21
+  --------------------------------------------------------------------------
+  data required time                                                 7.21
+  data arrival time                                                 -2.09
+  --------------------------------------------------------------------------
+  slack (MET)                                                        5.13
+
+
+1

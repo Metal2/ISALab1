@@ -1,0 +1,41 @@
+define_design_lib WORK -path ./WORK
+
+
+#READ FILES
+analyze -library WORK -format vhdl /home/isa19/Desktop/FIR_DEFINITIVO/src/fir_package.vhd
+analyze -library WORK -format vhdl /home/isa19/Desktop/FIR_DEFINITIVO/src/mpy.vhd
+analyze -library WORK -format vhdl /home/isa19/Desktop/FIR_DEFINITIVO/src/reg.vhd
+analyze -library WORK -format vhdl /home/isa19/Desktop/FIR_DEFINITIVO/src/sum.vhd
+analyze -library WORK -format vhdl /home/isa19/Desktop/FIR_DEFINITIVO/src/myfir.vhd 
+
+set power_preserve_rtl_hier_names true
+
+elaborate myfir -arch structural -lib WORK > ./elaborate.txt
+uniquify
+link
+
+
+#max clock period = 3.26, period*4 = 12.96
+create_clock -name MY_CLK -period 12.96 CLK
+set_dont_touch_network MY_CLK
+set_clock_uncertainty 0.07 [get_clocks MY_CLK]
+set_input_delay 0.5 -max -clock MY_CLK [remove_from_collection [all_inputs] CLK]
+set_output_delay 0.5 -max -clock MY_CLK [all_outputs]
+
+set OLOAD [load_of NangateOpenCellLibrary/BUF_X4/A]
+set_load $OLOAD [all_outputs]
+
+compile
+
+#REPORT
+report_timing > ./time_report.txt
+report_area > ./area_report.txt
+
+#SWITCHING ACTIVITY POWER ESTIMATION
+ungroup -all -flatten
+change_names -hierarchy -rules verilog
+write_sdf ../netlist/myfir.sdf
+write -f verilog -hierarchy -output ../netlist/myfir.v
+write_sdc ../netlist/myfir.sdc
+
+
